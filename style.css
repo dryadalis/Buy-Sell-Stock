@@ -1,0 +1,19 @@
+.input-cost{
+    margin-top: 1rem;
+}
+.input-group-addon:not(:last-child) {
+    width: 30%;
+}
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
