@@ -1,33 +1,38 @@
 const button = document.getElementById('maxProfit');
 const inputs = document.querySelectorAll('.form-control');
+const result = document.getElementById('result');
 let prices = [];
 let days;
 
-button.addEventListener('click', () => {
-    getAllValues();
-    console.log(prices, days);
-    clearAll();
-});
+window.onload = () => {
 
-const getAllValues = () => {
-    for (let i = 0; i < inputs.length; i++) {
-        days=+1;
-        if(inputs[i].value >= 1) {
-            prices.push(parseInt(inputs[i].value));
-        };
-        days = prices.length;
+    button.addEventListener('click', () => {
+
+        getAllValues();
+        console.log(prices, days);
+        clearAll();
+    });
+
+    const getAllValues = () => {
+        for (let i = 0; i < inputs.length; i++) {
+            days = +1;
+            if (inputs[i].value >= 1) {
+                prices.push(parseInt(inputs[i].value));
+            }
+            days = prices.length;
+        }
+        let maxProfit = maxProfitOptimized(prices, days);
+        result.innerHTML = `Maksymalny profit z kupna/sprzedaży to: ${maxProfit}`;
     };
-    let maxProfit = maxProfitOptimized(prices, days);
-    
-};
 
-const clearAll = () => {
-    prices = [];
-    for(let i = 0; i < inputs.length; i++) {
-        inputs[i].value = '';
+
+    const clearAll = () => {
+        prices = [];
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].value = '';}
+
     }
 
-}
 
 
 // const maxProfitInefficient = (prices, days) => {
@@ -51,21 +56,22 @@ const clearAll = () => {
 // console.log('Max profit', ineffecientLo);
 
 
-const maxProfitOptimized = (prices, days) => {
-    //set base case
-    let Rv = [];
-    Rv[0] = 0;
+    const maxProfitOptimized = (prices, days) => {
+        //set base case
+        let Rv = [];
+        Rv[0] = 0;
 
-    //set a minimum value
-    let min_value = prices[0];
+        //set a minimum value
+        let min_value = prices[0];
 
-    for(let i = 1; i < days; i++) {
-        min_value = Math.min(min_value, prices[i - 1]);
-        Rv[i] = Math.max(Rv[i - 1], prices[i] - min_value);
+        for (let i = 1; i < days; i++) {
+            min_value = Math.min(min_value, prices[i - 1]);
+            Rv[i] = Math.max(Rv[i - 1], prices[i] - min_value);
+        }
+        //return revenue.
+        return Rv[days - 1];
+
     }
-    //return revenue.
-    return Rv[days - 1];
-
 }
 
 
