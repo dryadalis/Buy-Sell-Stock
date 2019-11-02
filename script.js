@@ -10,7 +10,7 @@ window.onload = () => {
 
         getAllValues();
         console.log(prices, days);
-        clearAll();
+        // clearAll();
     });
 
     const getAllValues = () => {
@@ -73,6 +73,3 @@ window.onload = () => {
 
     }
 }
-
-
-
